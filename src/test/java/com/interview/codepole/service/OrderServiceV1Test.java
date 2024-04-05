@@ -4,8 +4,10 @@ import com.interview.codepole.api.ItemRequestV1;
 import com.interview.codepole.api.OrderRequestV1;
 import com.interview.codepole.domain.DiscountMaker;
 import com.interview.codepole.repository.OrderRepository;
+import com.interview.codepole.repository.UserRepository;
 import com.interview.codepole.repository.entity.Order;
 import com.interview.codepole.repository.entity.OrderDetail;
+import com.interview.codepole.repository.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -27,6 +29,9 @@ class OrderServiceV1Test {
     @Mock
     private OrderRepository orderRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
     @BeforeEach
     void setup() {
         DiscountMaker discountMaker = (int amount) -> {
@@ -41,8 +46,10 @@ class OrderServiceV1Test {
             }
             return 0.0;
         };
+        userRepository = Mockito.mock(UserRepository.class);
+        Mockito.when(userRepository.findUserById(Mockito.any())).thenReturn(java.util.Optional.of(new User()));
         orderRepository = Mockito.mock(OrderRepository.class);
-        orderServiceV1 = new OrderServiceV1(discountMaker, orderRepository);
+        orderServiceV1 = new OrderServiceV1(discountMaker, orderRepository, userRepository);
     }
 
 

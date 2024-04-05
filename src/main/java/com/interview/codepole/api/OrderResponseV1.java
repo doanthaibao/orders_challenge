@@ -12,7 +12,7 @@ public record OrderResponseV1(UUID orderId,
                               BigDecimal totalAmount,
                               @JsonProperty("order_date")
                               LocalDateTime date,
-                              @JsonProperty("user_id")
+                              @JsonProperty("items")
                               List<ItemResponseV1> items
 ) {
 }
