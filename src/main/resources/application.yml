@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: CodePoleChallenge
+  datasource:
+    url: jdbc:mysql://localhost:3306/orders?useSSL=false&serverTimezone=UTC
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: user
+    password: user
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
